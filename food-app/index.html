@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food App</title>
+  <link rel="stylesheet" href="./src/css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Food App</h1>
+  </header>
+
+  <div class="filters">
+    <input type="text" id="search-input" placeholder="Search meals..." />
+    <select id="category-filter">
+      <option value="">All Categories</option>
+      <option value="Beef">Beef</option>
+      <option value="Chicken">Chicken</option>
+      <option value="Dessert">Dessert</option>
+      <option value="Lamb">Lamb</option>
+      <option value="Pasta">Pasta</option>
+      <option value="Pork">Pork</option>
+      <option value="Seafood">Seafood</option>
+      <option value="Vegetarian">Vegetarian</option>
+    </select>
+
+    <select id="area-filter">
+      <option value="">All Areas</option>
+      <option value="American">American</option>
+      <option value="British">British</option>
+      <option value="Canadian">Canadian</option>
+      <option value="Chinese">Chinese</option>
+      <option value="Dutch">Dutch</option>
+      <option value="Egyptian">Egyptian</option>
+      <option value="French">French</option>
+      <option value="Greek">Greek</option>
+      <option value="Indian">Indian</option>
+      <option value="Italian">Italian</option>
+      <option value="Mexican">Mexican</option>
+      <option value="Spanish">Spanish</option>
+      <option value="Turkish">Turkish</option>
+    </select>
+
+     <!-- Toegevoegde sorteeroptie -->
+  <select id="sort-filter">
+    <option value="">Sort by</option>
+    <option value="name">Name</option>
+    <option value="category">Category</option>
+    <option value="area">Area</option>
+  </select>
+  </div>
+
+  <main id="app"></main>
+
+  <script src="./src/js/main.js"></script>
+</body>
+</html>
