@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Food App</title>
-  <link rel="stylesheet" href="./src/css/style.css" />
 </head>
+
 <body>
   <header>
     <h1>Food App</h1>
@@ -43,16 +43,24 @@
     </select>
 
     
-  <select id="sort-filter">
-    <option value="">Sort by</option>
-    <option value="name">Name</option>
-    <option value="category">Category</option>
-    <option value="area">Area</option>
-  </select>
+    <select id="sort-filter">
+      <option value="">Sort by</option>
+      <option value="strMeal">Name</option>
+      <option value="strCategory">Category</option>
+      <option value="strArea">Area</option>
+    </select>
+    
   </div>
 
-  <main id="app"></main>
+  <label>
+    <input type="checkbox" id="favorites-only" />
+    Show only favorites
+  </label>
+  
 
-  <script src="./src/js/main.js"></script>
+  <div id="app"></div>
+  <script type="module" src="/client/src/js/main.js" defer></script>
+
+
 </body>
 </html>

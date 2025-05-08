@@ -3,22 +3,61 @@ const searchInput = document.getElementById('search-input');
 const categoryFilter = document.getElementById('category-filter');
 const areaFilter = document.getElementById('area-filter');
 const sortFilter = document.getElementById('sort-filter');
+const favoritesOnlyCheckbox = document.getElementById('favorites-only');
 
-let allMeals = []; 
+const KEY = 'mealsData'; // De sleutel voor localStorage
+const EXPIRATION = 24 * 60 * 60 * 1000; // 24 uur (in milliseconden)
 
+let allMeals = [];
 
 async function fetchMeals() {
-  try {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=`);
-    const data = await response.json();
-    allMeals = data.meals || [];
+  const cachedData = localStorage.getItem(KEY);
+  const cachedTimestamp = localStorage.getItem(KEY + '_timestamp');
+
+  // Controleer of er gecachte gegevens zijn en of ze nog niet verlopen zijn
+  if (cachedData && cachedTimestamp && (Date.now() - cachedTimestamp < EXPIRATION)) {
+    console.log('Gebruik gecachte data');
+    allMeals = JSON.parse(cachedData);
     updateMeals();
-  } catch (error) {
-    console.error('Fout bij ophalen meals:', error);
-    app.textContent = 'Sorry, iets ging mis.';
+  } else {
+    try {
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=`);
+      const data = await response.json();
+      allMeals = data.meals || [];
+
+      // Sla de API-gegevens op in localStorage
+      localStorage.setItem(KEY, JSON.stringify(allMeals));
+      localStorage.setItem(KEY + '_timestamp', Date.now());
+
+      updateMeals();
+    } catch (error) {
+      console.error('Fout bij ophalen meals:', error);
+      app.textContent = 'Sorry, iets ging mis.';
+    }
   }
 }
 
+function getFavorites() {
+  return JSON.parse(localStorage.getItem('favorites')) || [];
+}
+
+function saveFavorites(favs) {
+  localStorage.setItem('favorites', JSON.stringify(favs));
+}
+
+function isFavorite(id) {
+  return getFavorites().includes(id);
+}
+
+function toggleFavorite(id) {
+  const favs = getFavorites();
+  if (favs.includes(id)) {
+    saveFavorites(favs.filter(favId => favId !== id));
+  } else {
+    favs.push(id);
+    saveFavorites(favs);
+  }
+}
 
 function displayMeals(meals) {
   app.innerHTML = '';
@@ -87,16 +126,28 @@ function displayMeals(meals) {
 
     contentWrapper.append(instructionsDiv, ingredientsDiv);
     mealContainer.append(title, img, category, area, contentWrapper);
+    
     app.appendChild(mealContainer);
+
+    const favButton = document.createElement('button');
+    favButton.textContent = isFavorite(meal.idMeal) ? '★ Favorite' : '☆ Add to favorites';
+    favButton.classList.add('fav-button');
+
+    favButton.addEventListener('click', () => {
+      toggleFavorite(meal.idMeal);
+      updateMeals(); // herteken zodat knop wijzigt
+    });
+
+    mealContainer.appendChild(favButton);
   });
 }
-
 
 function updateMeals() {
   const search = searchInput.value.trim().toLowerCase();
   const selectedCategory = categoryFilter.value;
   const selectedArea = areaFilter.value;
   const sortBy = sortFilter.value;
+  const showOnlyFavorites = favoritesOnlyCheckbox.checked;
 
   let filteredMeals = allMeals.filter(meal => {
     const nameMatch = meal.strMeal.toLowerCase().includes(search);
@@ -106,7 +157,11 @@ function updateMeals() {
     return nameMatch && categoryMatch && areaMatch;
   });
 
-  
+  if (showOnlyFavorites) {
+    const favIds = getFavorites();
+    filteredMeals = filteredMeals.filter(meal => favIds.includes(meal.idMeal));
+  }
+
   if (sortBy) {
     filteredMeals.sort((a, b) => {
       let keyA, keyB;
@@ -129,18 +184,10 @@ function updateMeals() {
   displayMeals(filteredMeals);
 }
 
-
-
-
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-
 searchInput.addEventListener('input', updateMeals);
 categoryFilter.addEventListener('change', updateMeals);
 areaFilter.addEventListener('change', updateMeals);
 sortFilter.addEventListener('change', updateMeals);
-
+favoritesOnlyCheckbox.addEventListener('change', updateMeals);
 
 fetchMeals();
