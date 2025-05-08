@@ -164,21 +164,22 @@ function updateMeals() {
 
   if (sortBy) {
     filteredMeals.sort((a, b) => {
-      let keyA, keyB;
-
+      let keyA = '', keyB = '';
+    
       if (sortBy === "name") {
-        keyA = a.strMeal.toLowerCase();
-        keyB = b.strMeal.toLowerCase();
+        keyA = (a.strMeal || '').toLowerCase();
+        keyB = (b.strMeal || '').toLowerCase();
       } else if (sortBy === "category") {
-        keyA = a.strCategory.toLowerCase();
-        keyB = b.strCategory.toLowerCase();
+        keyA = (a.strCategory || '').toLowerCase();
+        keyB = (b.strCategory || '').toLowerCase();
       } else if (sortBy === "area") {
-        keyA = a.strArea.toLowerCase();
-        keyB = b.strArea.toLowerCase();
+        keyA = (a.strArea || '').toLowerCase();
+        keyB = (b.strArea || '').toLowerCase();
       }
-
+    
       return keyA.localeCompare(keyB); 
     });
+    
   }
 
   displayMeals(filteredMeals);
