@@ -1,0 +1,168 @@
+
+body {
+    background-color: #fff3e0; 
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background-color: #455A64;
+    padding: 20px 0;
+    text-align: center;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  header h1 {
+    color: white;
+    font-size: 36px;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+  
+  
+
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px;
+    background-color: #ff9800;
+    border-radius: 12px;
+    margin: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+  }
+  
+  .filters input[type="text"],
+  .filters select {
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    min-width: 160px;
+    flex: 1;
+  }
+  
+  #favorites-only {
+    margin-left: 20px;
+    transform: scale(1.2);
+    accent-color: orange;
+  }
+  
+  label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    margin: 10px 20px;
+  }
+  
+
+
+  
+  .meal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: white;
+    border-radius: 12px;
+    margin: 10px;
+    padding: 20px;
+    position: relative; 
+  }
+  
+ 
+  .meal h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  
+  .meal-content {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+    justify-content: space-between;
+    margin-left: 20px;
+
+  }
+  
+ 
+  .meal img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+
+  .category-area {
+    display: block;
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+ 
+  .instructions {
+    flex: 2;
+    font-size: 14px;
+  }
+
+  .instructions h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .instructions p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  
+  .ingredients {
+    flex: 1;
+    font-size: 14px;
+  }
+  
+  .ingredients h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .ingredients ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .ingredients li {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+
+  .fav-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .fav-button:hover {
+    background-color: #ff7f00;
+  }
+  

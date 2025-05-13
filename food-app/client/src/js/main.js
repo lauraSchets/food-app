@@ -76,9 +76,26 @@ function displayMeals(meals) {
     const title = document.createElement('h2');
     title.textContent = meal.strMeal;
 
+    const favButton = document.createElement('button');
+    favButton.textContent = isFavorite(meal.idMeal) ? '★ Favorite' : '☆ Add to favorites';
+    favButton.classList.add('fav-button');
+    favButton.addEventListener('click', () => {
+      toggleFavorite(meal.idMeal);
+      updateMeals();
+    });
+
+    const contentWrapper = document.createElement('div');
+    contentWrapper.classList.add('meal-content');
+
+    const imageWrapper = document.createElement('div');
+    imageWrapper.classList.add('image-wrapper');
+
     const img = document.createElement('img');
     img.src = meal.strMealThumb;
     img.alt = meal.strMeal;
+
+    const categoryArea = document.createElement('div');
+    categoryArea.classList.add('category-area');
 
     const category = document.createElement('p');
     category.textContent = `Category: ${meal.strCategory}`;
@@ -86,8 +103,8 @@ function displayMeals(meals) {
     const area = document.createElement('p');
     area.textContent = `Area: ${meal.strArea}`;
 
-    const contentWrapper = document.createElement('div');
-    contentWrapper.classList.add('meal-content');
+    categoryArea.append(category, area);
+    imageWrapper.append(img, categoryArea);
 
     const instructionsDiv = document.createElement('div');
     instructionsDiv.classList.add('instructions');
@@ -124,23 +141,12 @@ function displayMeals(meals) {
 
     ingredientsDiv.append(ingredientsTitle, ingredientsList);
 
-    contentWrapper.append(instructionsDiv, ingredientsDiv);
-    mealContainer.append(title, img, category, area, contentWrapper);
-    
+    contentWrapper.append(imageWrapper, instructionsDiv, ingredientsDiv);
+    mealContainer.append(title, favButton, contentWrapper);
     app.appendChild(mealContainer);
-
-    const favButton = document.createElement('button');
-    favButton.textContent = isFavorite(meal.idMeal) ? '★ Favorite' : '☆ Add to favorites';
-    favButton.classList.add('fav-button');
-
-    favButton.addEventListener('click', () => {
-      toggleFavorite(meal.idMeal);
-      updateMeals(); // herteken zodat knop wijzigt
-    });
-
-    mealContainer.appendChild(favButton);
   });
 }
+
 
 function updateMeals() {
   const search = searchInput.value.trim().toLowerCase();
