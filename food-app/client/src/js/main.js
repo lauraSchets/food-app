@@ -10,8 +10,8 @@ const favoritesOnlyCheckbox = document.getElementById('favorites-only');
 
 //KEY: naam van de plek in de browser (localStorage) waar de recepten worden opgeslagen
 //EXPIRATION: na 24 uur (24 x 60 minutes x 60 seconden x 1000 milliseconden) is de bewaarde data verlopen en moet deze opnieuw worden opgehaald
-const KEY = 'mealsData'; 
-const EXPIRATION = 24 * 60 * 60 * 1000; 
+const KEY = 'mealsData';
+const EXPIRATION = 24 * 60 * 60 * 1000;
 
 
 
@@ -38,7 +38,7 @@ async function fetchMeals() {
     // als er geen cache is, wordt de data opgehaald via de API
   } else {
     try {
-      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=`); 
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=`);
       // fetch functie maakt een verbinding met deze website en 
       const data = await response.json(); // zet de inhoud van response om naar een object
       allMeals = data.meals; // de array 'meals' met alle maaltijden uit het object worden hierin opgeslaan 
@@ -79,7 +79,7 @@ function toggleFavorite(id) {
   const favs = getFavorites(); // haalt de lijst van huidige favorieten op
   if (favs.includes(id)) { // if deze maaltijd een favoriet is:
     saveFavorites(favs.filter(favId => favId !== id)); // verwijder deze dan uit de lijst en sla nieuwe lijst op
-  } else { 
+  } else {
     favs.push(id); // else voeg deze maaltijd toe aan de lijst 
     saveFavorites(favs); // sla de nieuwe lijst op
   }
@@ -94,7 +94,7 @@ function toggleFavorite(id) {
 function displayMeals(meals) {
   app.innerHTML = ''; //dit verwijdert alle elementen die zich binnen de app container bevinden
 
-// als de lijst maaltijden leeg is, wordt een bericht getoond 'No meals found.""
+  // als de lijst maaltijden leeg is, wordt een bericht getoond 'No meals found.""
   if (meals.length === 0) { // 
     const message = document.createElement('p'); // maakt nieuwe <p> element aan 
     message.textContent = 'No meals found.'; // bericht die gebruiker ziet indien de lijst maaltijden leeg is
@@ -102,7 +102,7 @@ function displayMeals(meals) {
     return;
   }
 
-  
+
   meals.forEach(meal => { // loop door alle maaltijden in de array 'meals'
 
     // HTML opbouw
@@ -174,12 +174,12 @@ function displayMeals(meals) {
 
     const ingredientsList = document.createElement('ul');//ongeordende lijst <ul> aanmaken 
     for (let i = 1; i <= 20; i++) { //loop over 20 ingrediënten en hoeveelheden. Elk ingrediënt zit in een aparte eigenschap (bv. strIngredient1, strIngredient2)
-      const ing = meal[`strIngredient${i}`]; //opvragen van deze eigenschappen ingredients uit het object 'meal'
+      const ingredients = meal[`strIngredient${i}`]; //opvragen van deze eigenschappen ingredients uit het object 'meal'
       const measure = meal[`strMeasure${i}`];//opvragen van eigenschappen hoeveelheden
-      if (ing && ing.trim()) { //controleert of er wel iets bestaat
-        const li = document.createElement('li'); //maakt dan een nieuwe lijstitem <li> aan
-        li.textContent = `${ing} - ${measure}`; // zichtbare tekst: ingrediënt - hoeveelheid
-        ingredientsList.appendChild(li); //voegt dit lijstitem <li> aan ingrediëntenlijst
+      if (ingredients && ingredients.trim()) { //controleert of er wel iets bestaat
+        const list = document.createElement('li'); //maakt dan een nieuwe lijstitem <li> aan
+        list.textContent = `${ingredients} - ${measure}`; // zichtbare tekst: ingrediënt - hoeveelheid
+        ingredientsList.appendChild(list); //voegt dit lijstitem <li> aan ingrediëntenlijst
       }
     }
 
@@ -227,7 +227,7 @@ function updateMeals() {
   if (sortBy) { //als er iets geselecteerd is (zie lijn 207), dan wordt de lijst gesorteerd
     filteredMeals.sort((a, b) => {  // lijst van filteredMeals sorteren met een vergelijkingsfunctie 
       let keyA = '', keyB = ''; // lege variabelen die gevuld zullen worden met sorteerwaarden
-    
+
       if (sortBy === "name") { //sorteren op naam van de maaltijd 
         keyA = (a.strMeal || '').toLowerCase(); //als strMeal null is, wordt het een lege string
         keyB = (b.strMeal || '').toLowerCase();//toLowerCase zorgt ervoor dat hoofdletters geen invloed hebben op volgorde 
@@ -238,10 +238,10 @@ function updateMeals() {
         keyA = (a.strArea || '').toLowerCase();
         keyB = (b.strArea || '').toLowerCase();
       }
-    
+
       return keyA.localeCompare(keyB); //vergelijkt keyA en keyB op alfabetische volgorde 
     });
-    
+
   }
 
   //toont alle maaltijden die overblijven na filteren en sorteren 
