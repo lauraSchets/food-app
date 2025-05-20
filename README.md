@@ -59,9 +59,9 @@ Deze repository bevat de volledige broncode, inclusief codecommentaar, responsiv
 - Gebruik van LocalStorage: lijnen 26-28, 47-48
 
 ### 5. Styling & layout 
-- Basis HTML layout 
-- Basis CSS
-- Gebruiksvriendelijke elementen
+- Basis HTML layout : [Open index.html](./food-app/index.html)
+- Basis CSS : [Open style.css](./client/src/css/style.css)
+- Gebruiksvriendelijke elementen: icoontjes voor favorieten toe te voegen of te verwijderen
 ### 6. Tooling & structuur: 
 - Project is opgezet met Vite 
 
@@ -93,7 +93,7 @@ Start de ontwikkelserver met:
 
 npm run dev
 
-Hiermee wordt applicatie gestart
+Na het uitvoeren van dit commando krijg je een URL te zien in de terminal. Open deze URL in je browser om de applicatie te bekijken.
 
 ---
 
@@ -104,7 +104,12 @@ https://youtu.be/xS-4vwsSPyI
 ---
 
 ## Gebruikte bronnen 
-- TheMealDB API
+- https://www.themealdb.com/api.php: API
+- https://www.youtube.com/watch?v=UcBtU3xpaSg : Tutorial: hoe je een Javascript-project bouwt met Vite
+- https://symbl.cc/en/collections/star-symbols : Unicode-karakters voor de sterren gebruikt bij favorieten
+- [Chatlog](https://1drv.ms/b/c/383391dc55ae12ac/Edb_NxaD2_NAnk-fR7EthX0BacRbw819eu86vTWtKClFXQ?e=LxpjTH)
+
+
 
 
 

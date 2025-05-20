@@ -20,8 +20,8 @@ let allMeals = [];
 
 
 
-//deze functie haalt de maaltijden op van het internet. async betekent dat we wachten tot het klaar is
-async function fetchMeals() {
+//deze functie haalt de maaltijden op van het internet
+async function fetchMeals() { //async betekent dat we wachten tot het klaar is
   // staat er al data in de browser en hoe oud is die data?
   const cachedData = localStorage.getItem(KEY);  //zoekt in de browser of er recepten zijn opgeslagen
   //je krijgt dan terug de recepten of null indien er niets gevonden werd
@@ -255,3 +255,4 @@ sortFilter.addEventListener('change', updateMeals); //maaltijden worden alfabeti
 favoritesOnlyCheckbox.addEventListener('change', updateMeals); //toont alleen favorieten indien aangevinkt 
 
 fetchMeals(); // haalt alle maaltijden op van de API en steekt ze in de array allMeals.
+
