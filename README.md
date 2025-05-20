@@ -1,8 +1,8 @@
 # Food-app - WebAdvanced Project
 
-Een interactieve single-page webapplicatie waarin gebruikers recepten kunnen opzoeken, filteren, sorteren en opslaan als favoriet. De applicatie is gebouwd met HTML, CSS en JavaScript (met Vite als bundler), en maakt gebruik van een externe recepten-API. 
+Food-app is een interactieve single-page webapplicatie waarin gebruikers recepten kunnen opzoeken, filteren, sorteren en opslaan als favoriet. De applicatie is gebouwd met HTML, CSS en JavaScript met Vite als ontwikkeltool voor het snel starten van de applicatie. De recepten worden opgehaald via een externe recepten-API.
 
-Deze repository bevat de volledige broncode, inclusief codecommentaar, responsive design via media queries en styling via CSS modules.
+Deze repository bevat de volledige broncode, inclusief codecommentaar, responsive design via media queries en styling via CSS.
 
 ---
 
